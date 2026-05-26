@@ -1,0 +1,1486 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Einführung in Struts 1.x anhand von Beispielen">
+      
+      
+        <meta name="author" content="Serge Tahé">
+      
+      
+        <link rel="canonical" href="https://stahe.github.io/de-struts1x-dec-2003/formularverarbeitung-durch-den-controller.html">
+      
+      
+        <link rel="prev" href="die-anwendung-strutspersonne.html">
+      
+      
+        <link rel="next" href="verwendung-dynamischer-formulare.html">
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.0">
+    
+    
+      
+        <title>3. Formularverarbeitung durch den Controller - Einführung in Struts 1.x anhand von Beispielen</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.618322db.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/focus.css">
+    
+      <link rel="stylesheet" href="stylesheets/bidi.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBZC3JVJNR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    var siteName = "Einführung in Struts 1.x anhand von Beispielen";
+    gtag('config', 'G-EBZC3JVJNR', {
+        'page_title': siteName
+    });
+  </script>
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#3-formularverarbeitung-durch-den-controller" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="Einführung in Struts 1.x anhand von Beispielen" class="md-header__button md-logo" aria-label="Einführung in Struts 1.x anhand von Beispielen" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Einführung in Struts 1.x anhand von Beispielen
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3. Formularverarbeitung durch den Controller
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Zum Dunkelmodus wechseln"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Zum Dunkelmodus wechseln" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="purple"  aria-label="Zum Hellmodus wechseln"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Zum Hellmodus wechseln" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://stahe.github.io/de-struts1x-dec-2003" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="Einführung in Struts 1.x anhand von Beispielen" class="md-nav__button md-logo" aria-label="Einführung in Struts 1.x anhand von Beispielen" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Einführung in Struts 1.x anhand von Beispielen
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://stahe.github.io/de-struts1x-dec-2003" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Willkommen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="allgemeine-informationen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Allgemeine Informationen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="die-anwendung-strutspersonne.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Die Anwendung „strutspersonne“
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Formularverarbeitung durch den Controller
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="formularverarbeitung-durch-den-controller.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Formularverarbeitung durch den Controller
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#31-die-datei-struts-configxml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.1. Die Datei struts-config.xml
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#32-die-neue-formbean-klasse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.2. Die neue FormBean-Klasse
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#33-formularvalidierungstests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3. Formularvalidierungstests
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.3. Formularvalidierungstests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#331-test-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.1. Test 1
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#332-test-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.2. Test 2
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#333-test-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.3. Test 3
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#334-test-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.4. Test 4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#335-test-5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.5. Test 5
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#336-test-6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.6. Test 6
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#337-test-7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.3.7. Test 7
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#34-neue-konfiguration-fur-die-aktion-main" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.4. Neue Konfiguration für die Aktion /main
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#35-die-formaction-klasse" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.5. Die FormAction-Klasse
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#36-formaction-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.6. FormAction-Tests
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#37-fazit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3.7. Fazit
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="verwendung-dynamischer-formulare.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Verwendung dynamischer Formulare
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="dynamische-formulare-mit-integritatsbeschrankungen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Dynamische Formulare mit Integritätsbeschränkungen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="html-formulare.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6. HTML-Formulare
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="-quiest-anwendung.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    7.  QuiEst-Anwendung
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="erstellen-eines-plugins.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    8. Erstellen eines Plugins
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="arbeiten-mit-einer-datenquelle.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    9. Arbeiten mit einer Datenquelle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="anhange.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    10. Anhänge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="3-formularverarbeitung-durch-den-controller">3. <span style="color: #365f91">Formularverarbeitung durch den Controller</span></h1>
+<p>Wir konzentrieren uns nun darauf, wie der Controller die Formularwerte verarbeitet, wenn der Benutzer auf die Schaltfläche [Submit] im Formular klickt.</p>
+<h2 id="31-die-datei-struts-configxml">3.1. <span style="color: #4f81bd">Die Datei struts-config.xml</span></h2>
+<p>Die neue Konfigurationsdatei <strong>struts-config.xml</strong> für den Struts-Controller sieht wie folgt aus:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="cp">&lt;!DOCTYPE struts-config PUBLIC</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="cp">          &quot;-//Apache Software Foundation//DTD Struts Configuration 1.1//EN&quot;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="cp">          &quot;http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd&quot;&gt;</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nt">&lt;struts-config&gt;</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">&lt;form-beans&gt;</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">        </span><span class="nt">&lt;form-bean</span><span class="w"> </span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">            </span><span class="na">name=</span><span class="s">&quot;frmPersonne&quot;</span><span class="w"> </span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">            </span><span class="na">type=</span><span class="s">&quot;istia.st.struts.personne.FormulaireBean&quot;</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">        </span><span class="nt">/&gt;</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="nt">&lt;/form-beans&gt;</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">    </span><span class="nt">&lt;action-mappings&gt;</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">      </span><span class="nt">&lt;action</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">          </span><span class="na">path=</span><span class="s">&quot;/main&quot;</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">          </span><span class="na">name=</span><span class="s">&quot;frmPersonne&quot;</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">            </span><span class="na">scope=</span><span class="s">&quot;session&quot;</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">            </span><span class="na">validate=</span><span class="s">&quot;true&quot;</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">            </span><span class="na">input=</span><span class="s">&quot;/erreurs.do&quot;</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">          </span><span class="na">parameter=</span><span class="s">&quot;/vues/main.html&quot;</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">          </span><span class="na">type=</span><span class="s">&quot;org.apache.struts.actions.ForwardAction&quot;</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="w">      </span><span class="nt">/&gt;</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">      </span><span class="nt">&lt;action</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">          </span><span class="na">path=</span><span class="s">&quot;/erreurs&quot;</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">          </span><span class="na">parameter=</span><span class="s">&quot;/vues/erreurs.personne.jsp&quot;</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">          </span><span class="na">type=</span><span class="s">&quot;org.apache.struts.actions.ForwardAction&quot;</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">      </span><span class="nt">/&gt;</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">      </span><span class="nt">&lt;action</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">          </span><span class="na">path=</span><span class="s">&quot;/reponse&quot;</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">          </span><span class="na">parameter=</span><span class="s">&quot;/vues/reponse.personne.jsp&quot;</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">          </span><span class="na">type=</span><span class="s">&quot;org.apache.struts.actions.ForwardAction&quot;</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">      </span><span class="nt">/&gt;</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">      </span><span class="nt">&lt;action</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">          </span><span class="na">path=</span><span class="s">&quot;/formulaire&quot;</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">          </span><span class="na">parameter=</span><span class="s">&quot;/vues/formulaire.personne.jsp&quot;</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">          </span><span class="na">type=</span><span class="s">&quot;org.apache.struts.actions.ForwardAction&quot;</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">      </span><span class="nt">/&gt;</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">    </span><span class="nt">&lt;/action-mappings&gt;</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">    </span><span class="nt">&lt;message-resources</span><span class="w"> </span><span class="na">parameter=</span><span class="s">&quot;ressources.personneressources&quot;</span><span class="nt">/&gt;</span><span class="w">    </span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="nt">&lt;/struts-config&gt;</span>
+</code></pre></div>
+<p>Wir haben die Änderungen hervorgehoben:</p>
+<ul>
+  <li>Es erscheint ein<b> &lt;form-beans&gt;</b>-Abschnitt. Er dient dazu, die Klassen zu definieren, die den einzelnen Formularen der Anwendung zugeordnet sind. Es muss genauso viele <b>&lt;form-bean&gt;</b>-Tags geben, wie es verschiedene Formulare in der Anwendung gibt. Hier haben wir nur ein Formular, daher gibt es nur einen <b>&lt;form-bean&gt;</b>-Abschnitt. Für jedes Formular müssen wir Folgendes definieren:
+    <ul>
+      <li>seinen Namen (name-Attribut)
+      </li>
+      <li>den Namen der von <b>ActionForm</b> abgeleiteten Klasse, die für die Speicherung der Formularwerte zuständig ist (type-Attribut)
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<p>Diese beiden Attribute können nicht beliebig gewählt werden. Sie müssen mit denen übereinstimmen, die im <strong>&lt;html:form&gt;</strong>-Tag im HTML-Code des Formulars verwendet werden. Erinnern Sie sich an den Code für das Formular (name, age):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>      &lt;html:form action=&quot;/main&quot; name=&quot;frmPersonne&quot; type=&quot;istia.st.struts.personne.FormulaireBean&quot;&gt;
+</code></pre></div>
+<p>Das Formular muss in der Datei <strong>struts-config.html</strong> auf dieselbe Weise deklariert werden. Dies geschieht hier wie folgt:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>        <span class="p">&lt;</span><span class="nt">form-bean</span> 
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>            <span class="na">name</span><span class="o">=</span><span class="s">&quot;frmPersonne&quot;</span> 
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>            <span class="na">type</span><span class="o">=</span><span class="s">&quot;istia.st.struts.personne.FormulaireBean&quot;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        <span class="p">/&gt;</span>
+</code></pre></div>
+<ul>
+  <li>Die Konfiguration der Aktion <b>/main </b>hat sich geändert. Diese Aktion ist für die Verarbeitung der Formularwerte zuständig. Daher müssen wir ihr die erforderlichen Informationen zum Formular bereitstellen:
+  </li>
+</ul>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>      &lt;action
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>          path=&quot;/main&quot;
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>          name=&quot;frmPersonne&quot;
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>            scope=&quot;session&quot;
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>            validate=&quot;true&quot;
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>            input=&quot;/erreurs.do&quot;
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>          parameter=&quot;/vues/main.html&quot;
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>          type=&quot;org.apache.struts.actions.ForwardAction&quot;
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>      /&gt;
+</code></pre></div>
+<p>Das Servlet <strong>/main</strong> verarbeitet ein Formular, dem ein Name zugewiesen werden muss. Dies wird über das Attribut <strong>„name“</strong> geregelt. Dieser Name muss auf das Attribut <strong>„name“</strong> eines der <strong>&lt;form-bean&gt;</strong>-Abschnitte verweisen, in diesem Fall auf <strong>frmPersonne</strong>. </p>
+<p>Das Attribut <strong>scope=&quot;session&quot;</strong> gibt an, dass die Formularwerte in der Sitzung gespeichert werden müssen. Dies ist nicht immer notwendig. Hier ist es jedoch der Fall. Tatsächlich finden wir in den Ansichten <strong>/reponse.do</strong> und <strong>/erreurs.do</strong> Links, die zum Formular zurückführen. In beiden Fällen möchten wir das Formular mit den Werten anzeigen, die der Benutzer während eines vorherigen Client-Server-Austauschs eingegeben hat. Daher ist es notwendig, das Formular in der Sitzung zu speichern.</p>
+<p>Das Attribut <strong>„validate“</strong> gibt an, ob die Methode <strong>„validate“</strong> des Objekts <strong>„frmPersonne“</strong> aufgerufen werden soll. Diese Methode dient dazu, die Gültigkeit der Formulardaten zu überprüfen. Hier legen wir fest, dass die Daten überprüft werden müssen, was bedeutet, dass wir eine „validate“-Methode in der Klasse <strong>„FormulaireBean“</strong> schreiben müssen. Die validate-Methode des Formulars wird vom Struts-Controller aufgerufen, bevor das /main-Servlet aufgerufen wird. Sie gibt ein ActionErrors-Objekt zurück, das einer Fehlerliste entspricht. Wenn diese Liste existiert und nicht leer ist, bricht der Struts-Controller an dieser Stelle ab und sendet die durch das input-Attribut angegebene Ansicht als Antwort. Die Ansicht erhält die ActionErrors-Liste in der Anfrage, die sie mithilfe des Tags <strong>&lt;html:errors&gt;</strong> anzeigen kann. Oben legen wir fest, dass das /main-Servlet im Falle von Fehlern die Ansicht <strong>/errors.do</strong> senden muss. Erinnern Sie sich daran, dass diese Ansicht mit der folgenden URL verknüpft ist: <strong>/views/errors.response.jsp</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="err">&lt;</span>%@ taglib uri=&quot;/WEB-INF/struts-html.tld&quot; prefix=&quot;html&quot; %&gt;
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>      <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Personne<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Les erreurs suivantes se sont produites<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>        <span class="p">&lt;</span><span class="nt">html:errors</span><span class="p">/&gt;</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="p">&lt;</span><span class="nt">html:link</span> <span class="na">page</span><span class="o">=</span><span class="s">&quot;/formulaire.do&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>            Retour au formulaire
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>        <span class="p">&lt;/</span><span class="nt">html:link</span><span class="p">&gt;</span>      
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Die Ansicht verwendet korrekt das <strong>&lt;html:errors&gt;</strong>-Tag, das die Liste der Fehler anzeigt. In dieser Fehlerliste finden Sie keine Fehlermeldungen, sondern Meldungskennungen, die in der Datei enthalten sind, auf die das <strong>&lt;message-resources&gt;</strong>-Tag verweist (Hinweis: <strong>Ressourcen</strong> mit einem einzigen <strong>„s“</strong>):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>    &lt;message-resources parameter=&quot;ressources.personneressources&quot;/&gt;    
+</code></pre></div>
+<p>Der folgende Tag gibt an, dass sich die Datei mit den von der Anwendung verwendeten Meldungen in der Datei <strong>WEB-INF/classes/ressources/personneressources.properties</strong> befindet:</p>
+<p><img src="images/100000000000018D0000006A37D26FDA.png" width="397" height="106" style="width:10.502cm;height:2.805cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018D0000006A37D26FDA.png" /></p>
+<p>Was steht in dieser Datei? Es handelt sich um eine Properties-Datei, die der Java-Properties-Klasse entspricht, d. h. um eine Reihe von Zeilen <strong>im Format Schlüssel=Wert</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>errors.header=&lt;ul&gt;
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>errors.footer=&lt;/ul&gt;
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>personne.formulaire.nom.vide=&lt;li&gt;Vous devez indiquer un nom&lt;/li&gt;
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>personne.formulaire.age.incorrect=&lt;li&gt;L&#39;âge [{0}] est incorrect&lt;/li&gt;
+</code></pre></div>
+<p>Diese Meldungsdatei hat mindestens zwei Funktionen:</p>
+<ul>
+  <li>Sie ermöglicht es Ihnen, die Meldungen der Anwendung zu ändern, ohne diese neu kompilieren zu müssen
+  </li>
+  <li>sie ermöglicht die Internationalisierung von Struts-Anwendungen. Sie können mehrere Ressourcendateien erstellen, eine pro Sprache. Struts verwendet automatisch die richtige Meldungsdatei, sofern bestimmte Namenskonventionen eingehalten werden.
+  </li>
+</ul>
+
+<ul>
+  <li>Wenn die validate-Methode des Formulars eine leere Fehlerliste zurückgibt, ruft der Struts-Controller die execute-Methode des ForwardAction-Servlets auf. Es ist wichtig zu verstehen, dass die Ausführung <b>der </b>execute-Methode des Servlets bedeutet, dass die Formulardaten als gültig angesehen wurden (vorausgesetzt natürlich, dass sie über validate=&quot;true&quot; validiert wurden). Innerhalb der execute-Methode des mit der Aktion verbundenen Servlets verarbeitet der Entwickler das Formular tatsächlich. Hier findet der Kern der Verarbeitung statt (Anwendungslogik, Verwendung von Business-Klassen und Datenzugriffsklassen). Letztendlich gibt die Methode ein ActionForward-Objekt zurück, das dem Renderer mitteilt, welche Ansicht an den Client zurückgesendet werden soll. Hier haben wir die vordefinierte ForwardAction-Aktion von Struts verwendet. Ihre execute-Methode gibt einfach ein <b>ActionForward</b> zurück, das auf die durch <b>das </b>parameter-Attribut angegebene URL verweist:
+  </li>
+</ul>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>      &lt;action
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>          path=&quot;/main&quot;
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>          name=&quot;frmPersonne&quot;
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>            validate=&quot;true&quot;
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>            input=&quot;/erreurs.do&quot;
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>          parameter=&quot;/vues/main.html&quot;
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>          type=&quot;org.apache.struts.actions.ForwardAction&quot;
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>      /&gt;
+</code></pre></div>
+<p>Wenn die Formulardaten also gültig sind, gibt die Aktion <strong>/main</strong> die Ansicht <strong>/vues/main.html</strong> zurück, die wir bereits verwendet haben.</p>
+<h2 id="32-die-neue-formbean-klasse">3.2. <span style="color: #4f81bd">Die neue FormBean-Klasse</span></h2>
+<p>Wir haben bereits eine erste Version der FormBean-Klasse erstellt, die für die Speicherung der Daten (Name, Alter) aus <strong>dem</strong> Formular <strong>formulaire.personne.jsp</strong> zuständig ist. Diese Version hat die Daten nicht validiert. Nun müssen wir dies tun, da wir in der Datei <strong>struts-config.xml</strong> festgelegt haben, dass die Formulardaten validiert werden müssen (<strong>validate=&quot;true&quot;</strong>), bevor sie an das ForwardAction-Servlet übergeben werden. Der Klassencode sieht nun wie folgt aus:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">istia.st.struts.personne</span><span class="p">;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">javax.servlet.http.*</span><span class="p">;</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.struts.action.*</span><span class="p">;</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">FormulaireBean</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="w">  </span><span class="kd">extends</span><span class="w"> </span><span class="n">ActionForm</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">   </span><span class="c1">// name</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">nom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getNom</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">nom</span><span class="p">;</span>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setNom</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">nom</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="na">nom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nom</span><span class="p">;</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a><span class="w">   </span><span class="c1">// age</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a><span class="w">  </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="nf">getAge</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">setAge</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">age</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="na">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">age</span><span class="p">;</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a>
+<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a><span class="w">   </span><span class="c1">// validation</span>
+<a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="n">ActionErrors</span><span class="w"> </span><span class="nf">validate</span><span class="p">(</span><span class="n">ActionMapping</span><span class="w"> </span><span class="n">mapping</span><span class="p">,</span><span class="w"> </span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a><span class="w">    </span><span class="c1">// error management</span>
+<a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a><span class="w">    </span><span class="n">ActionErrors</span><span class="w"> </span><span class="n">erreurs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ActionErrors</span><span class="p">();</span>
+<a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a><span class="w">     </span><span class="c1">// name must be non-empty</span>
+<a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">nom</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">nom</span><span class="p">.</span><span class="na">trim</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a><span class="w">      </span><span class="n">erreurs</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;nomvide&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ActionError</span><span class="p">(</span><span class="s">&quot;personne.formulaire.nom.vide&quot;</span><span class="p">));</span>
+<a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a><span class="w">       </span><span class="c1">// age must be a positive integer</span>
+<a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">age</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">age</span><span class="p">.</span><span class="na">trim</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a><span class="w">      </span><span class="n">erreurs</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;agevide&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ActionError</span><span class="p">(</span><span class="s">&quot;personne.formulaire.age.vide&quot;</span><span class="p">));</span>
+<a id="__codelineno-8-39" name="__codelineno-8-39" href="#__codelineno-8-39"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-8-40" name="__codelineno-8-40" href="#__codelineno-8-40"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-41" name="__codelineno-8-41" href="#__codelineno-8-41"></a><span class="w">      </span><span class="c1">// age must be a positive integer</span>
+<a id="__codelineno-8-42" name="__codelineno-8-42" href="#__codelineno-8-42"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">age</span><span class="p">.</span><span class="na">matches</span><span class="p">(</span><span class="s">&quot;^\\s*\\d+\\s*$&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-43" name="__codelineno-8-43" href="#__codelineno-8-43"></a><span class="w">        </span><span class="n">erreurs</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="s">&quot;ageincorrect&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ActionError</span><span class="p">(</span><span class="s">&quot;personne.formulaire.age.incorrect&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">));</span>
+<a id="__codelineno-8-44" name="__codelineno-8-44" href="#__codelineno-8-44"></a><span class="w">        </span><span class="c1">// return the list of errors</span>
+<a id="__codelineno-8-45" name="__codelineno-8-45" href="#__codelineno-8-45"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-8-46" name="__codelineno-8-46" href="#__codelineno-8-46"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">//if</span>
+<a id="__codelineno-8-47" name="__codelineno-8-47" href="#__codelineno-8-47"></a><span class="w">     </span><span class="c1">// return the error list</span>
+<a id="__codelineno-8-48" name="__codelineno-8-48" href="#__codelineno-8-48"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">erreurs</span><span class="p">;</span>
+<a id="__codelineno-8-49" name="__codelineno-8-49" href="#__codelineno-8-49"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-8-50" name="__codelineno-8-50" href="#__codelineno-8-50"></a><span class="p">}</span>
+</code></pre></div>
+<p>Die neue Funktion liegt in der Implementierung der validate-Methode. Diese Methode wird vom Struts-Controller aufgerufen, nachdem er die Attribute <strong>name</strong> und <strong>age</strong> der Klasse mit den Werten aus den gleichnamigen Formularfeldern gefüllt hat. Sie muss die Gültigkeit der Attribute <strong>name</strong> und <strong>age</strong> überprüfen. Der obige Code ist recht einfach:</p>
+<ul>
+  <li>Es wird eine leere Fehlerliste (<b>ActionErrors errors</b>) erstellt
+  </li>
+  <li>das Feld <b>„name“ </b>wird überprüft. Ist es leer, wird der Fehlerliste mithilfe der Methode<b> ActionErrors.add(&quot;key&quot;, ActionError) </b>ein Fehler hinzugefügt.
+  </li>
+  <li>Dasselbe geschieht, wenn das Feld <b>„age“ </b>kein Ganzzahlwert ist.
+  </li>
+  <li><b>Die </b>validate-Methode gibt die Fehlerliste (<b>ActionErrors errors</b>) an den Struts-Controller zurück. Ist<b> errors null </b>oder ist<b> errors.size() </b>gleich 0, geht der Controller davon aus, dass keine Fehler aufgetreten sind. Er führt dann die execute-Methode der mit der Aktion verknüpften Action-Klasse (<b>type=&quot;org.apache.struts.actions.ForwardAction&quot;</b>) aus. Andernfalls gibt er die mit Formularfehlern verknüpfte Ansicht zurück (<b>input=&quot;/errors.do&quot;</b>).
+  </li>
+</ul>
+
+<p>Ein Fehler wird mithilfe <strong>von <code>ActionErrors.add(&amp;quot;errorKey&amp;quot;, new ActionError(&amp;quot;messageKey&amp;quot;[,param0, param1, param2, param3]))</code></strong> zur Liste <strong><code>ActionErrors**</code> hinzugefügt. Der erste Parameter, „errorKey“, dient dazu, ein </strong><code>ActionError</code><strong>-Element in der Liste </strong><code>ActionErrors</code><strong> eindeutig zu identifizieren, ähnlich wie in einem Wörterbuch. Er kann eine beliebige Zeichenfolge sein. </strong>ActionError<strong> ist ein Objekt</strong>,<strong> das über seinen Konstruktor </strong>ActionError(String errorKey[,String param0, String param1, String param2, String param3])<strong> mit einer Fehlermeldung verknüpft wird</strong>,<strong> wobei </strong>errorKey<strong> die Kennung der mit dem Fehler verbundenen Meldung ist und bis zu 4 optionale Parameter enthält. Die Kennung </strong>keyMessage<strong> ist nicht beliebig. Es handelt sich um eine der Kennungen, die in der Datei zu finden sind, die durch das </strong>&lt;message-resources&gt;<strong>-Tag in der Datei </strong>struts-config.xml** angegeben wird:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>    &lt;message-resources parameter=&quot;ressources.personneressources&quot;/&gt;    
+</code></pre></div>
+<p>Beachten Sie, dass diese Datei (tatsächlich <strong>WEB-INF/classes/resources/personneressources.properties</strong>) die folgenden Schlüssel enthält:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>errors.header=&lt;ul&gt;
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>errors.footer=&lt;/ul&gt;
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>personne.formulaire.nom.vide=&lt;li&gt;Vous devez indiquer un nom&lt;/li&gt;
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>personne.formulaire.age.incorrect=&lt;li&gt;L&#39;âge [{0}] est incorrect&lt;/li&gt;
+</code></pre></div>
+<p>Wir können überprüfen, ob die von der validate-Methode der FormBean-Klasse verwendeten Meldungsschlüssel tatsächlich in der obigen Datei vorhanden sind. Wir haben für jede Fehlermeldung den HTML-Tag <strong>&lt;li&gt;</strong> verwendet, damit der <strong>&lt;html:errors&gt;</strong>-Tag sie als HTML-Liste anzeigt. Wir haben gesehen, dass das ActionError-Objekt nicht nur mit einem Meldungsschlüssel, sondern auch mit zusätzlichen Parametern erstellt werden kann:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>public ActionError(String cléMessage[,String param0, String param1, String param2, String param3])
+</code></pre></div>
+<p>Wenn ein <strong>ActionError</strong> mit zusätzlichen Parametern (maximal vier) erstellt wurde, sind diese im Meldungstext über die Notation {0} bis {3} zugänglich. So erstellt die validate-Methode von <strong>FormulaireBean</strong> einen <strong>ActionError</strong> mit dem Schlüssel <strong>personne.formulaire.age.incorrect</strong> und dem zusätzlichen Parameter param0 <strong>age</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>      erreurs.add(&quot;age&quot;, new ActionError(&quot;personne.formulaire.age.incorrect&quot;,age));
+</code></pre></div>
+<p>Die Meldung, die dem Schlüssel <code>**person.form.age.incorrect**</code> in der <strong>.</strong>properties-Datei zugeordnet ist, lautet </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>personne.formulaire.age.incorrect=&lt;li&gt;L&#39;âge [{0}] est incorrect&lt;/li&gt;
+</code></pre></div>
+<p>Das {0} wird durch den Alterswert ersetzt. Schließlich werden die Meldungen mit den Schlüsseln <strong>errors.header</strong> und <strong>errors.footer</strong> jeweils vor und nach der Fehlerliste geschrieben. Hier werden diese beiden Schlüssel verwendet, um die HTML-Tags <strong>&lt;ul&gt;</strong> und <strong>&lt;/ul&gt;</strong> einzufügen<strong>,</strong> die die <strong>&lt;li&gt;</strong>-Tags umschließen müssen.</p>
+<h2 id="33-formularvalidierungstests">3.3. <span style="color: #4f81bd">Formularvalidierungstests</span></h2>
+<p>Wir sind bereit, die Gültigkeit des Formulars zu testen. Nachfolgend finden Sie eine Übersicht darüber, wo die verschiedenen Komponenten der Anwendung platziert werden sollten:</p>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>die Ansichten
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000016900000083E501C2E5.png" width="361" height="131" style="display:inline-block; margin:4px;width:9.55cm;height:3.466cm;" class="odt-zoomable" data-zoom-src="images/100000000000016900000083E501C2E5.png" /></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>die Konfigurationsdateien
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000001570000009700B069CB.png" width="343" height="151" style="display:inline-block; margin:4px;width:9.073cm;height:3.993cm;" class="odt-zoomable" data-zoom-src="images/10000000000001570000009700B069CB.png" /></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>die Meldungsdatei
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000018A0000007612ED60C5.png" width="394" height="118" style="display:inline-block; margin:4px;width:10.423cm;height:3.122cm;" class="odt-zoomable" data-zoom-src="images/100000000000018A0000007612ED60C5.png" /></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>die Klassen
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000001F100000067AAC21268.png" width="497" height="103" style="display:inline-block; margin:4px;width:13.148cm;height:2.725cm;" class="odt-zoomable" data-zoom-src="images/10000000000001F100000067AAC21268.png" /></td></tr></table>
+
+<h3 id="331-test-1">3.3.1. <span style="color: #4f81bd">Test 1</span></h3>
+<p>Starten Sie Tomcat neu, damit die neuen Konfigurationsdateien geladen werden, und geben Sie dann die URL <strong>http://localhost:8080/strutspersonne/formulaire.do</strong> ein:</p>
+<p><img src="images/1000000000000191000000FB1E91DDC5.png" width="401" height="251" style="width:10.608cm;height:6.639cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/1000000000000191000000FB1E91DDC5.png" /></p>
+<p>Erläuterungen:</p>
+<ul>
+  <li>In <b>struts-config.html </b>wurde der folgende Abschnitt verwendet:
+  </li>
+</ul>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>      &lt;action
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>          path=&quot;/formulaire&quot;
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>          parameter=&quot;/vues/formulaire.personne.jsp&quot;
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>          type=&quot;org.apache.struts.actions.ForwardAction&quot;
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>      /&gt;
+</code></pre></div>
+<p>Wenn wir uns den HTML-Code der empfangenen Seite ansehen, stellen wir fest, dass der &lt;<strong>form</strong>&gt;-Tag auf der Seite wie folgt lautet:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>      <span class="p">&lt;</span><span class="nt">form</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;frmPersonne&quot;</span> <span class="na">method</span><span class="o">=</span><span class="s">&quot;post&quot;</span> <span class="na">action</span><span class="o">=</span><span class="s">&quot;/strutspersonne/main.do&quot;</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Die Schaltfläche [Submit], die vom Typ <strong>„submit“</strong> ist<strong>,</strong> sendet die Formulardaten daher an die URL <strong>/strutspersonne/main.do</strong>. </p>
+<h3 id="332-test-2">3.3.2. <span style="color: #4f81bd">Test 2</span></h3>
+<p>Verwenden wir die Schaltfläche [Submit], während wir die Eingabefelder leer lassen. Wir erhalten folgende Antwort:</p>
+<p><img src="images/10000000000001FD000000DD162BC24A.png" width="509" height="221" style="width:13.466cm;height:5.847cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001FD000000DD162BC24A.png" /></p>
+<p>Erläuterungen:</p>
+<ul>
+  <li>Wie oben angegeben, wurden die Formulardaten an die URL <b>/strutspersonne/main.do </b>gesendet. Anschließend wurden die folgenden Abschnitte der Datei<b> struts-config.xml </b>verwendet:
+  </li>
+</ul>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>        <span class="p">&lt;</span><span class="nt">form-bean</span> 
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>            <span class="na">name</span><span class="o">=</span><span class="s">&quot;frmPersonne&quot;</span> 
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>            <span class="na">type</span><span class="o">=</span><span class="s">&quot;istia.st.struts.personne.FormulaireBean&quot;</span>
+<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>            <span class="na">scope</span><span class="o">=</span><span class="s">&quot;session&quot;</span>
+<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>        <span class="p">/&gt;</span>
+<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>....
+<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>      <span class="p">&lt;</span><span class="nt">action</span>
+<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>          <span class="na">path</span><span class="o">=</span><span class="s">&quot;/main&quot;</span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>          <span class="na">name</span><span class="o">=</span><span class="s">&quot;frmPersonne&quot;</span>
+<a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>            <span class="na">validate</span><span class="o">=</span><span class="s">&quot;true&quot;</span>
+<a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>            <span class="na">input</span><span class="o">=</span><span class="s">&quot;/erreurs.do&quot;</span>
+<a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>          <span class="na">parameter</span><span class="o">=</span><span class="s">&quot;/vues/main.html&quot;</span>
+<a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>          <span class="na">type</span><span class="o">=</span><span class="s">&quot;org.apache.struts.actions.ForwardAction&quot;</span>
+<a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>      <span class="p">/&gt;</span>
+</code></pre></div>
+<p>Die Aktion <strong>/main</strong> wurde ausgelöst. Sie verwendet das Formular <strong>frmPersonne</strong> (<strong>name=&quot;frmPersonne&quot;</strong>). Der Struts-Controller hat daher, falls erforderlich, ein Objekt der Klasse <strong>FormulaireBean</strong> instanziiert (<strong>type=&quot;istia.st.struts.personne.FormulaireBean&quot;</strong> im Form-Bean-Tag). Er hat die Attribute <strong>name</strong> und <strong>age</strong> dieses Objekts mit den <strong>gleichnamigen</strong> Feldern im HTML-Formular gefüllt:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>          <span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>            <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>              <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Nom<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">html:text</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;nom&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;20&quot;</span><span class="p">/&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>          <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>          <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>              <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Age<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">html:text</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;age&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;3&quot;</span><span class="p">/&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>          <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>            <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>        <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Sobald dies geschehen ist, ruft der Struts-Controller die <strong>validate</strong>-Methode des FormBean-Objekts auf, da das validate-Attribut der /main-Aktion in der Konfigurationsdatei auf <strong>true</strong> gesetzt ist:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>      &lt;action
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>          path=&quot;/main&quot;
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>          name=&quot;frmPersonne&quot;
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>            validate=&quot;true&quot;
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>            input=&quot;/erreurs.do&quot;
+<a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>          parameter=&quot;/vues/main.html&quot;
+<a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>          type=&quot;org.apache.struts.actions.ForwardAction&quot;
+<a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>      /&gt;
+</code></pre></div>
+<p>Die <strong>validate</strong>-Methode der <strong>FormBean</strong>-Klasse lautet wie folgt:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="w">  </span><span class="c1">// validation</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">  </span><span class="kr">public</span><span class="w"> </span><span class="nx">ActionErrors</span><span class="w"> </span><span class="nx">validate</span><span class="p">(</span><span class="nx">ActionMapping</span><span class="w"> </span><span class="nx">mapping</span><span class="p">,</span><span class="w"> </span><span class="nx">HttpServletRequest</span><span class="w"> </span><span class="nx">request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">    </span><span class="c1">// error management</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">    </span><span class="nx">ActionErrors</span><span class="w"> </span><span class="nx">erreurs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ActionErrors</span><span class="p">();</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w">     </span><span class="c1">// name must be non-empty</span>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">nom</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">nom</span><span class="p">.</span><span class="nx">trim</span><span class="p">().</span><span class="nx">equals</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="w">      </span><span class="nx">erreurs</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;nomvide&quot;</span><span class="p">,</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ActionError</span><span class="p">(</span><span class="s2">&quot;personne.formulaire.nom.vide&quot;</span><span class="p">));</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="w">       </span><span class="c1">// age must be a positive integer</span>
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">age</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">age</span><span class="p">.</span><span class="nx">trim</span><span class="p">().</span><span class="nx">equals</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="w">      </span><span class="nx">erreurs</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;agevide&quot;</span><span class="p">,</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ActionError</span><span class="p">(</span><span class="s2">&quot;personne.formulaire.age.vide&quot;</span><span class="p">));</span>
+<a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a><span class="w">      </span><span class="c1">// age must be a positive integer</span>
+<a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="nx">age</span><span class="p">.</span><span class="nx">matches</span><span class="p">(</span><span class="s2">&quot;^\\s*\\d+\\s*$&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a><span class="w">        </span><span class="nx">erreurs</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s2">&quot;ageincorrect&quot;</span><span class="p">,</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">ActionError</span><span class="p">(</span><span class="s2">&quot;personne.formulaire.age.incorrect&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">age</span><span class="p">));</span>
+<a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a><span class="w">        </span><span class="c1">// return the list of errors</span>
+<a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a><span class="w">      </span><span class="p">}</span>
+<a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">//if</span>
+<a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a><span class="w">     </span><span class="c1">// return the error list</span>
+<a id="__codelineno-23-21" name="__codelineno-23-21" href="#__codelineno-23-21"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">erreurs</span><span class="p">;</span>
+<a id="__codelineno-23-22" name="__codelineno-23-22" href="#__codelineno-23-22"></a><span class="w">  </span><span class="p">}</span>
+</code></pre></div>
+<p>Da die Felder [name] und [age] leer waren, erzeugte die obige Validierungsmethode eine Liste mit zwei Fehlern, die sie an den Struts-Controller zurückgab. Da Fehler vorlagen, gab der Controller daraufhin die mit dem Eingabeattribut verknüpfte Ansicht an den Client zurück. Um festzustellen, um welche Ansicht es sich handelte, verwendete er den folgenden Abschnitt seiner Konfigurationsdatei:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>      &lt;action
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>          path=&quot;/erreurs&quot;
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>          parameter=&quot;/vues/erreurs.personne.jsp&quot;
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>          type=&quot;org.apache.struts.actions.ForwardAction&quot;
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>      /&gt;
+</code></pre></div>
+<p>Es hat also letztendlich die Ansicht <strong>/views/errors.person.jsp</strong> gesendet. Diese Ansicht enthält den folgenden Code:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="err">&lt;</span>%@ taglib uri=&quot;/WEB-INF/struts-html.tld&quot; prefix=&quot;html&quot; %&gt;
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>      <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Personne<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Les erreurs suivantes se sont produites<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>        <span class="p">&lt;</span><span class="nt">html:errors</span><span class="p">/&gt;</span>
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>    <span class="p">&lt;</span><span class="nt">html:link</span> <span class="na">page</span><span class="o">=</span><span class="s">&quot;/formulaire.do&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>            Retour au formulaire
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>        <span class="p">&lt;/</span><span class="nt">html:link</span><span class="p">&gt;</span>    
+<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Das &lt;<strong>html:errors</strong>&gt;-Tag zeigt lediglich die Liste der Meldungen an, die ihm vom Struts-Controller übermittelt wurden. Es verwendet die durch das &lt;<strong>message-resources</strong>&gt;-Tag angegebene Meldungsdatei:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>    &lt;message-resources parameter=&quot;ressources.personneressources&quot;/&gt;
+</code></pre></div>
+<p>Sie enthält die folgenden Schlüssel und Meldungen:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>personne.formulaire.nom.vide=&lt;li&gt;Vous devez indiquer un nom&lt;/li&gt;
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>personne.formulaire.age.vide=&lt;li&gt;Vous devez indiquer un age&lt;/li&gt;
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>personne.formulaire.age.incorrect=&lt;li&gt;L&#39;âge [{0}] est incorrect&lt;/li&gt;
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>errors.header=&lt;ul&gt;
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>errors.footer=&lt;/ul&gt;
+</code></pre></div>
+<ul>
+  <li>Die mit dem Schlüssel<b> „errors.header“ </b>verknüpfte Meldung wird geschrieben
+  </li>
+  <li>die mit den verschiedenen Schlüsseln in der empfangenen ActionErrors-Liste verbundenen Meldungen werden geschrieben
+  </li>
+  <li>Die mit dem Schlüssel<b> „errors.footer“ </b>verknüpfte Meldung wird geschrieben
+  </li>
+</ul>
+<h3 id="333-test-3">3.3.3. <span style="color: #4f81bd">Test 3</span></h3>
+<p>Verwenden wir den Link [Zurück zum Formular] auf der Fehlerseite. Wir erhalten die folgende Seite:</p>
+<p><img src="images/100000000000018F000000FF8F761758.png" width="399" height="255" style="width:10.555cm;height:6.747cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000018F000000FF8F761758.png" /></p>
+<p>Erläuterungen:</p>
+<ul>
+  <li>Der Link [Zurück zum Formular] hat den folgenden HTML-Code:
+  </li>
+</ul>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>    <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;/strutspersonne/formulaire.do&quot;</span><span class="p">&gt;</span>Retour au formulaire<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Der Struts-Controller verwendete den folgenden Abschnitt aus seiner Konfigurationsdatei:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a>      &lt;action
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>          path=&quot;/formulaire&quot;
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>          parameter=&quot;/vues/formulaire.personne.jsp&quot;
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>          type=&quot;org.apache.struts.actions.ForwardAction&quot;
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>      /&gt;
+</code></pre></div>
+<p>Es wurde daher die Ansicht <strong>/views/form.person.jsp</strong> zurückgegeben.</p>
+<h3 id="334-test-4">3.3.4. <span style="color: #4f81bd">Test 4</span></h3>
+<p>Wir füllen das folgende Formular aus und klicken dann auf die Schaltfläche [Absenden]:</p>
+<p><img src="images/10000000000001B40000010460802617.png" width="436" height="260" style="width:11.534cm;height:6.877cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001B40000010460802617.png" /></p>
+<p>Wir erhalten die folgende Antwort:</p>
+<p><img src="images/10000000000001ED000000CE70C8F9E5.png" width="493" height="206" style="width:13.042cm;height:5.45cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001ED000000CE70C8F9E5.png" /></p>
+<p>Erläuterungen: Diese entsprechen denen zu Test 2.</p>
+<h3 id="335-test-5">3.3.5. <span style="color: #4f81bd">Test 5</span></h3>
+<p>Wir klicken oben auf den Link [Zurück zum Formular]. Wir sehen die folgende Seite:</p>
+<p><img src="images/10000000000001A4000001077BFEB07F.png" width="420" height="263" style="width:11.111cm;height:6.959cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001A4000001077BFEB07F.png" /></p>
+<p>Wir sehen, dass sich das Formular im gleichen Zustand befindet wie beim Absenden.</p>
+<p><strong>Erläuterungen</strong>: Diese entsprechen denen zu Test Nr. 3, mit folgenden zusätzlichen Informationen:</p>
+<ul>
+  <li>Das angezeigte HTML-Formular enthält die folgenden Tags:
+  </li>
+</ul>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>          <span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>            <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a>              <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Nom<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">html:text</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;nom&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;20&quot;</span><span class="p">/&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a>          <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a>          <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>              <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Age<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a>            <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;&lt;</span><span class="nt">html:text</span> <span class="na">property</span><span class="o">=</span><span class="s">&quot;age&quot;</span> <span class="na">size</span><span class="o">=</span><span class="s">&quot;3&quot;</span><span class="p">/&gt;&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a>          <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a>            <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a>        <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Die &lt;<strong>html:text</strong>&gt;-Tags haben zwei Funktionen:</p>
+<ul>
+  <li>Beim Senden von Formularwerten vom Client an den Server werden die Werte der Eingabefelder des Formulars den gleichnamigen Feldern im FormBean-Objekt zugewiesen
+  </li>
+  <li>wenn der Server den HTML-Code für das anzuzeigende Formular an den Client zurücksendet, werden die value-Attribute der Eingabefelder, die den &lt;<b>html:text</b>&gt;-Tags zugeordnet sind, mit den Werten der gleichnamigen Felder im FormBean-Objekt initialisiert.
+  </li>
+</ul>
+
+<p>Hier haben wir zwei verschiedene Client-Server-Interaktionen:</p>
+<ul>
+  <li>Im ersten Fall hat der Benutzer das Formular ausgefüllt und an den Server gesendet
+  </li>
+  <li>In der zweiten hat der Benutzer auf den Link [Zurück zum Formular] geklickt, um zum Formular zurückzukehren.
+  </li>
+</ul>
+
+<p>Die einzige Möglichkeit, das Formular bei der zweiten Interaktion mit seinen ursprünglichen Werten erneut anzuzeigen, besteht darin, diese Werte in der Sitzung des Clients zu speichern. Genau das wurde im Abschnitt zur Konfiguration der Aktion <strong>/main</strong> festgelegt:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a>      &lt;action
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>          path=&quot;/main&quot;
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>          name=&quot;frmPersonne&quot;
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>            scope=&quot;session&quot;
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>            validate=&quot;true&quot;
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>            input=&quot;/erreurs.do&quot;
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>          parameter=&quot;/vues/main.html&quot;
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a>          type=&quot;org.apache.struts.actions.ForwardAction&quot;
+<a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a>      /&gt;
+</code></pre></div>
+<p>Hätten wir <strong>scope=&quot;request&quot;</strong> gesetzt, wären die Formulardaten nicht in der Sitzung gespeichert worden, und wir hätten ihre Werte beim zweiten Austausch nicht abrufen können.</p>
+<h3 id="336-test-6">3.3.6. <span style="color: #4f81bd">Test 6</span></h3>
+<p>Kehren wir zum Formular zurück und geben wir diesmal gültige Daten ein:</p>
+<p><img src="images/10000000000001B900000103005B3195.png" width="441" height="259" style="width:11.666cm;height:6.851cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001B900000103005B3195.png" /></p>
+<p>Senden Sie das Formular ab. Wir erhalten das folgende Ergebnis:</p>
+<p><img src="images/10000000000001EE0000008A4B09457B.png" width="494" height="138" style="width:13.069cm;height:3.651cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001EE0000008A4B09457B.png" /></p>
+<p><strong>Erläuterungen</strong>:</p>
+<ul>
+  <li>Da die Schaltfläche [Absenden] die Formularwerte an die URL <b>/strutspersonne/main.do </b>sendet, gelten dieselben Erläuterungen wie in Test 2, bis der Struts-Controller das ActionErrors-Ergebnis von der validate-Methode des <b>FormBean </b>erhält. Hier ist diese Liste jedoch leer. Der Controller nutzt dann einen neuen Teil der /main-Aktionskonfiguration:
+  </li>
+</ul>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>      &lt;action
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>          path=&quot;/main&quot;
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>          name=&quot;frmPersonne&quot;
+<a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>            scope=&quot;session&quot;
+<a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>            validate=&quot;true&quot;
+<a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>            input=&quot;/erreurs.do&quot;
+<a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a>          parameter=&quot;/vues/main.html&quot;
+<a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a>          type=&quot;org.apache.struts.actions.ForwardAction&quot;
+<a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a>      /&gt;
+</code></pre></div>
+<p>Der Struts-Controller erstellt bei Bedarf ein Objekt des durch das type-Attribut angegebenen Typs<strong>.</strong> Die execute-Methode dieser Klasse wird ausgeführt und muss ein ActionForward-Objekt zurückgeben, das die Ansicht angibt, die der Controller als Antwort an den Client senden muss. Hier bezieht sich das type-Attribut auf die vordefinierte ForwardAction-Klasse. Die Methode <strong><code>execute</code></strong> dieser Klasse führt keine Aktion aus und gibt lediglich ein <strong><code>ActionForward</code></strong>-Objekt zurück, das auf die durch das Attribut <strong><code>parameter</code></strong> definierte Ansicht verweist, in diesem Fall die Ansicht <strong><code>/vues/main.html</code></strong>. Dies ist tatsächlich die Ansicht, die der Controller zurückgegeben hat.</p>
+<h3 id="337-test-7">3.3.7. <span style="color: #4f81bd">Test 7</span></h3>
+<p>Wir rufen die Ansicht <strong>/form.do</strong> erneut auf:</p>
+<p><img src="images/10000000000001B900000103005B3195.png" width="441" height="259" style="width:11.666cm;height:6.851cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001B900000103005B3195.png" /></p>
+<p>Wir sehen das Formular genau so, wie wir es übermittelt haben. Die Erklärung wurde bereits gegeben. Durch die Konfiguration (scope=&quot;session&quot;) haben wir festgelegt, dass das Formular in der Sitzung verbleiben soll. Seine Werte bleiben daher während des gesamten Client-Server-Austauschs erhalten.</p>
+<p>Wir sind fast fertig. Wir müssen noch eine geeignete Aktion für den Fall erstellen, dass die Formulardaten gültig sind. Bislang haben wir die vordefinierte <strong>ForwardAction</strong> verwendet, um unsere Demonstration zu vereinfachen.</p>
+<h2 id="34-neue-konfiguration-fur-die-aktion-main">3.4. <span style="color: #4f81bd">Neue Konfiguration für die Aktion /main</span></h2>
+<p>Wir ändern die aktuelle Konfigurationsdatei <strong>struts-config.xml</strong> nicht, außer dass wir den Abschnitt <strong>/main</strong> wie folgt anpassen:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>      &lt;action
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>          path=&quot;/main&quot;
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>          name=&quot;frmPersonne&quot;
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>            scope=&quot;session&quot;
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>            validate=&quot;true&quot;
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a>            input=&quot;/erreurs.do&quot;
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>          type=&quot;istia.st.struts.personne.FormulaireAction&quot;
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a>      &gt;
+<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a>            &lt;forward name=&quot;reponse&quot; path=&quot;/reponse.do&quot;/&gt;
+<a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a>        &lt;/action&gt;
+</code></pre></div>
+<p>Das Attribut „type“ verweist nun auf eine andere Klasse namens <strong>„FormAction“</strong>, die wir implementieren müssen. Es ist die Methode <strong>„execute“</strong> dieser Klasse, die aufgerufen wird, wenn die Daten im Formular <strong>„frmPersonne“</strong> gültig sind. Wir haben festgelegt, dass die Methode <strong>„execute“</strong> ihre Aufgabe ausführt und ein „ActionForward“-Objekt zurückgibt, das die Ansicht angibt, die der Controller an den Client zurücksenden soll. Je nach Ergebnis der Formularverarbeitung gibt es oft mehrere mögliche Ansichten. Die Liste der möglichen Ansichten wird innerhalb der &lt;<strong>forward</strong>&gt;-Tags angegeben, die im &lt;<strong>action</strong>&gt;-Tag enthalten sind. Die Syntax für ein solches Tag lautet wie folgt:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>            &lt;forward name=&quot;clé&quot; path=&quot;/vue&quot; /&gt;
+</code></pre></div>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>Schlüssel
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">beliebiger Name, der eine Ansicht eindeutig identifiziert</div></td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>Ansicht
+</code></pre></div>
+</div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">URL der Ansicht, die mit dem Schlüssel verknüpft ist</div></td></tr></table>
+
+<h2 id="35-die-formaction-klasse">3.5. <span style="color: #4f81bd">Die FormAction-Klasse</span></h2>
+<p>Das Schreiben der <strong>FormAction</strong>-Klasse besteht im Wesentlichen darin, ihre <strong>execute</strong>-Methode zu schreiben:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">istia.st.struts.personne</span><span class="p">;</span>
+<a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a>
+<a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.struts.action.Action</span><span class="p">;</span>
+<a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.struts.action.ActionMapping</span><span class="p">;</span>
+<a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.struts.action.ActionForm</span><span class="p">;</span>
+<a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a><span class="kn">import</span><span class="w"> </span><span class="nn">org.apache.struts.action.ActionForward</span><span class="p">;</span>
+<a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="kn">import</span><span class="w"> </span><span class="nn">javax.servlet.http.HttpServletRequest</span><span class="p">;</span>
+<a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a><span class="kn">import</span><span class="w"> </span><span class="nn">javax.servlet.http.HttpServletResponse</span><span class="p">;</span>
+<a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a><span class="kn">import</span><span class="w"> </span><span class="nn">java.io.IOException</span><span class="p">;</span>
+<a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a><span class="kn">import</span><span class="w"> </span><span class="nn">javax.servlet.ServletException</span><span class="p">;</span>
+<a id="__codelineno-37-11" name="__codelineno-37-11" href="#__codelineno-37-11"></a>
+<a id="__codelineno-37-12" name="__codelineno-37-12" href="#__codelineno-37-12"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">FormulaireAction</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Action</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-37-13" name="__codelineno-37-13" href="#__codelineno-37-13"></a>
+<a id="__codelineno-37-14" name="__codelineno-37-14" href="#__codelineno-37-14"></a><span class="w">  </span><span class="kd">public</span><span class="w"> </span><span class="n">ActionForward</span><span class="w"> </span><span class="nf">execute</span><span class="p">(</span><span class="n">ActionMapping</span><span class="w"> </span><span class="n">mapping</span><span class="p">,</span><span class="w"> </span><span class="n">ActionForm</span><span class="w"> </span><span class="n">form</span><span class="p">,</span>
+<a id="__codelineno-37-15" name="__codelineno-37-15" href="#__codelineno-37-15"></a><span class="w">                               </span><span class="n">HttpServletRequest</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">HttpServletResponse</span><span class="w"> </span><span class="n">response</span><span class="p">)</span>
+<a id="__codelineno-37-16" name="__codelineno-37-16" href="#__codelineno-37-16"></a><span class="w">                                         </span><span class="kd">throws</span><span class="w"> </span><span class="n">IOException</span><span class="p">,</span><span class="n">ServletException</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-37-17" name="__codelineno-37-17" href="#__codelineno-37-17"></a>
+<a id="__codelineno-37-18" name="__codelineno-37-18" href="#__codelineno-37-18"></a><span class="w">     </span><span class="c1">// we have a valid form, otherwise we wouldn&#39;t have got here</span>
+<a id="__codelineno-37-19" name="__codelineno-37-19" href="#__codelineno-37-19"></a><span class="w">    </span><span class="n">FormulaireBean</span><span class="w"> </span><span class="n">formulaire</span><span class="o">=</span><span class="p">(</span><span class="n">FormulaireBean</span><span class="p">)</span><span class="n">form</span><span class="p">;</span>
+<a id="__codelineno-37-20" name="__codelineno-37-20" href="#__codelineno-37-20"></a><span class="w">    </span><span class="n">request</span><span class="p">.</span><span class="na">setAttribute</span><span class="p">(</span><span class="s">&quot;nom&quot;</span><span class="p">,</span><span class="n">formulaire</span><span class="p">.</span><span class="na">getNom</span><span class="p">());</span>
+<a id="__codelineno-37-21" name="__codelineno-37-21" href="#__codelineno-37-21"></a><span class="w">    </span><span class="n">request</span><span class="p">.</span><span class="na">setAttribute</span><span class="p">(</span><span class="s">&quot;age&quot;</span><span class="p">,</span><span class="n">formulaire</span><span class="p">.</span><span class="na">getAge</span><span class="p">());</span>
+<a id="__codelineno-37-22" name="__codelineno-37-22" href="#__codelineno-37-22"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">mapping</span><span class="p">.</span><span class="na">findForward</span><span class="p">(</span><span class="s">&quot;reponse&quot;</span><span class="p">);</span>
+<a id="__codelineno-37-23" name="__codelineno-37-23" href="#__codelineno-37-23"></a><span class="w">  </span><span class="p">}</span><span class="c1">//execute</span>
+<a id="__codelineno-37-24" name="__codelineno-37-24" href="#__codelineno-37-24"></a><span class="p">}</span>
+</code></pre></div>
+<p>Die Methode <strong><code>execute</code></strong> benötigt vier Parameter:</p>
+<ol start="5">
+  <li><b>ActionMapping mapping</b>: ein „Image“-Objekt, das die Konfiguration der aktuell ausgeführten Aktion darstellt; in diesem Fall ein Image mit der folgenden Konfiguration:
+  </li>
+</ol>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>      &lt;action
+<a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>          path=&quot;/main&quot;
+<a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>          name=&quot;frmPersonne&quot;
+<a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>            validate=&quot;true&quot;
+<a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>            input=&quot;/erreurs.do&quot;
+<a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a>          type=&quot;istia.st.struts.personne.FormulaireAction&quot;
+<a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a>      &gt;
+<a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a>            &lt;forward name=&quot;reponse&quot; path=&quot;/reponse.do&quot;/&gt;
+<a id="__codelineno-38-9" name="__codelineno-38-9" href="#__codelineno-38-9"></a>        &lt;/action&gt;
+</code></pre></div>
+<p>Somit hat die Aktion Zugriff auf die Schlüssel, die den Ansichten zugeordnet sind und am Ende der Aktion an den Client zurückgegeben werden können. Die Methode <strong>„execute“</strong> muss einen dieser Schlüssel zurückgeben.</p>
+<ol>
+  <li><b>ActionForm form</b>: das Bean-Objekt, das die von der aktuellen Aktion verwendeten Formularwerte enthält. Hier handelt es sich um das Objekt <b>frmPersonne </b>vom Typ <b>FormBean</b>. Somit hat die Aktion Zugriff auf die Formularwerte.
+  </li>
+  <li><b>HttpServletRequest request</b>: die Client-Anfrage, die möglicherweise durch verschiedene Servlets erweitert wurde. Die Aktion hat somit Zugriff auf alle Parameter der ursprünglichen Anfrage (request.getParameter) sowie auf alle Attribute, die dieser ursprünglichen Anfrage hinzugefügt wurden (request.getAttribute). In unserem Beispiel erweitert die Methode <b>`execute` </b>die Anfrage, indem sie den Namen und das Alter hinzufügt. Dies ist hier völlig unnötig, da diese beiden Werte bereits vorhanden sind, allerdings als Parameter und nicht als Attribute. Der Code wird hier nur zur Veranschaulichung aufgeführt.
+  </li>
+  <li><b>HttpServletResponse response</b>: die Antwort, die an den Client gesendet wird. Die Aktion könnte diese Antwort erweitern. Hier tut sie dies jedoch nicht.
+  </li>
+</ol>
+
+<p>Hier haben wir es mit einem Sonderfall zu tun. Die Methode <strong><code>execute</code></strong> hat fast nichts zu tun. Sie muss lediglich angeben, dass die nächste Ansicht <strong><code>/reponse.do</code></strong> ist, und in der Anfrage festlegen, dass diese Ansicht die zur Anzeige benötigten Informationen zu <strong>Name</strong> und <strong>Alter</strong> erhält. Dies geschieht mithilfe der Methode <strong><code>findForward</code></strong> der Klasse <strong><code>ActionMapping**</code>, die als Parameter einen der Schlüssel verwendet, die in den </strong><code>forward</code>**-Tags der Konfiguration der Aktion zu finden sind. Hier gibt es nur einen solchen Tag:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>            &lt;forward name=&quot;reponse&quot; path=&quot;/reponse.do&quot;/&gt;
+</code></pre></div>
+<p>Unsere Methode gibt daher ein <strong>ActionForward</strong> mit <strong>„response</strong>“ als Schlüssel zurück, um anzugeben, dass die Ansicht <strong>/response.do</strong> gesendet werden soll.</p>
+<h2 id="36-formaction-tests">3.6. <span style="color: #4f81bd"><strong><span style="color: #4f81bd">FormAction-Tests</span></strong></span></h2>
+<p>Wir kompilieren die vorherige Klasse mit JBuilder und legen die generierte .class-Datei in <strong>WEB-INF/classes</strong> ab:</p>
+<p><img src="images/100000000000020D0000006DFF504235.png" width="525" height="109" style="width:13.889cm;height:2.884cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000020D0000006DFF504235.png" /></p>
+<p>Wir ändern die Ansicht <strong>/vues/reponse.personne.jsp</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="err">&lt;</span>%
+<a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>    // on récupère les données nom, age
+<a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>  String nom=(String)request.getAttribute(&quot;nom&quot;);
+<a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>  String age=(String)request.getAttribute(&quot;age&quot;); 
+<a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a>%&gt;
+<a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a>
+<a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+<a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a>    <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a>      <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Personne<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+<a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a>  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<a id="__codelineno-40-11" name="__codelineno-40-11" href="#__codelineno-40-11"></a>  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+<a id="__codelineno-40-12" name="__codelineno-40-12" href="#__codelineno-40-12"></a>      <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>Personne - réponse<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+<a id="__codelineno-40-13" name="__codelineno-40-13" href="#__codelineno-40-13"></a>    <span class="p">&lt;</span><span class="nt">hr</span><span class="p">&gt;</span>
+<a id="__codelineno-40-14" name="__codelineno-40-14" href="#__codelineno-40-14"></a>    <span class="p">&lt;</span><span class="nt">table</span><span class="p">&gt;</span>
+<a id="__codelineno-40-15" name="__codelineno-40-15" href="#__codelineno-40-15"></a>        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-40-16" name="__codelineno-40-16" href="#__codelineno-40-16"></a>          <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Nom<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-40-17" name="__codelineno-40-17" href="#__codelineno-40-17"></a>        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span><span class="err">&lt;</span>%= nom %&gt;
+<a id="__codelineno-40-18" name="__codelineno-40-18" href="#__codelineno-40-18"></a>      <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-40-19" name="__codelineno-40-19" href="#__codelineno-40-19"></a>        <span class="p">&lt;</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-40-20" name="__codelineno-40-20" href="#__codelineno-40-20"></a>          <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span>Age<span class="p">&lt;/</span><span class="nt">td</span><span class="p">&gt;</span>
+<a id="__codelineno-40-21" name="__codelineno-40-21" href="#__codelineno-40-21"></a>        <span class="p">&lt;</span><span class="nt">td</span><span class="p">&gt;</span><span class="err">&lt;</span>%= age %&gt;
+<a id="__codelineno-40-22" name="__codelineno-40-22" href="#__codelineno-40-22"></a>      <span class="p">&lt;/</span><span class="nt">tr</span><span class="p">&gt;</span>
+<a id="__codelineno-40-23" name="__codelineno-40-23" href="#__codelineno-40-23"></a>    <span class="p">&lt;/</span><span class="nt">table</span><span class="p">&gt;</span>      
+<a id="__codelineno-40-24" name="__codelineno-40-24" href="#__codelineno-40-24"></a>    <span class="p">&lt;</span><span class="nt">html:link</span> <span class="na">page</span><span class="o">=</span><span class="s">&quot;/formulaire.do&quot;</span><span class="p">&gt;</span>
+<a id="__codelineno-40-25" name="__codelineno-40-25" href="#__codelineno-40-25"></a>            Retour au formulaire
+<a id="__codelineno-40-26" name="__codelineno-40-26" href="#__codelineno-40-26"></a>        <span class="p">&lt;/</span><span class="nt">html:link</span><span class="p">&gt;</span>    
+<a id="__codelineno-40-27" name="__codelineno-40-27" href="#__codelineno-40-27"></a>  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<a id="__codelineno-40-28" name="__codelineno-40-28" href="#__codelineno-40-28"></a><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+<p>Die Ansicht ruft die Informationen <strong>zu Name</strong> und <strong>Alter</strong> aus den empfangenen Anfrageattributen ab. Wir rufen das Formular unter der URL <strong>http://localhost:8080/strutspersonne/formulaire.do</strong> auf und füllen es dann aus:</p>
+<p><img src="images/10000000000001A300000105E44C3940.png" width="419" height="261" style="width:11.084cm;height:6.904cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001A300000105E44C3940.png" /></p>
+<p>Wir klicken auf die Schaltfläche [Absenden] und erhalten die folgende Antwort:</p>
+<p><img src="images/10000000000001F0000000E3FE661326.png" width="496" height="227" style="width:13.122cm;height:6.004cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001F0000000E3FE661326.png" /></p>
+<p><strong>Erläuterungen</strong>:</p>
+<ul>
+  <li>Für den Beginn des Prozesses verweisen wir auf die Erläuterung zu Test Nr. 2. Sehen wir uns die Konfiguration der Aktion <b>/main</b> noch einmal an:
+  </li>
+</ul>
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>      &lt;action
+<a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>          path=&quot;/main&quot;
+<a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>          name=&quot;frmPersonne&quot;
+<a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a>            scope=&quot;session&quot;
+<a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a>            validate=&quot;true&quot;
+<a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a>            input=&quot;/erreurs.do&quot;
+<a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a>          type=&quot;istia.st.struts.personne.FormulaireAction&quot;
+<a id="__codelineno-41-8" name="__codelineno-41-8" href="#__codelineno-41-8"></a>      &gt;
+<a id="__codelineno-41-9" name="__codelineno-41-9" href="#__codelineno-41-9"></a>            &lt;forward name=&quot;reponse&quot; path=&quot;/reponse.do&quot;/&gt;
+<a id="__codelineno-41-10" name="__codelineno-41-10" href="#__codelineno-41-10"></a>        &lt;/action&gt;
+</code></pre></div>
+<ul>
+  <li>Nachdem das Formular an den Controller unter der URL <b>/main.do </b>übermittelt wurde, erstellte oder verwendete der Controller ein <b>frmPersonne</b>-Objekt vom Typ <b>FormBean </b>und füllte es mit den Formularwerten
+  </li>
+  <li>Die validate-Methode des frmPersonne-Objekts wurde aufgerufen. Da die Daten gültig waren, gab die <b>validate</b>-Methode eine leere ActionErrors-Liste zurück.
+  </li>
+  <li>Ein FormAction-Objekt wurde erstellt oder wiederverwendet, und seine <b>execute</b>-Methode wurde aufgerufen. Diese Methode gab ein <b>ActionForward</b>-Objekt mit dem Schlüssel „<b>reponse</b>“ zurück<b>.</b>
+  </li>
+  <li>Der Controller sendete daraufhin die mit dem Schlüssel<b> „reponse“ </b>verknüpfte Ansicht, d. h. <b>/reponse.do, </b>und somit <b>/vues/reponse.personne.jsp</b>.
+  </li>
+  <li>Die Ansicht <b>reponse.personne.jsp </b>wurde mit den Werten angezeigt, die von der <b>execute</b>-Methode des FormAction-Objekts in der Anfrage gesetzt wurden.
+  </li>
+</ul>
+
+<h2 id="37-fazit">3.7. <span style="color: #4f81bd">Fazit</span></h2>
+<p>Wir haben eine umfassende und dennoch einfache Anwendung erstellt. Bei der tatsächlichen Umsetzung mit Struts, Tomcat und JBuilder gibt es viele Möglichkeiten, Fehler zu machen, insbesondere in den XML-Konfigurationsdateien der Anwendung. Auf den ersten Blick mag es einfacher erscheinen, diese Anwendung ohne Struts zu erstellen, indem man ein Servlet und JSP-Seiten verwendet. Für Anfänger trifft dies wahrscheinlich zu. Mit zunehmender Erfahrung wird die Entwicklung mit Struts jedoch einfacher. Viele Unternehmen schreiben die Struts-Methodik für ihre Webentwicklung aus folgenden Gründen vor:</p>
+<ul>
+  <li>Struts folgt dem MVC-Modell
+  </li>
+  <li>Wenn alle Entwickler auf die gleiche Weise arbeiten, wird die Wartung der Anwendung einfacher, da sie über eine Standardarchitektur verfügen.
+  </li>
+</ul>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner">
+
+      <div>
+        <a href="https://stahe.github.io" target="_blank">
+          https://stahe.github.io
+        </a>
+        <br>
+        Dieses Tutorial, verfasst von <strong>Serge Tahé</strong>, wird der Öffentlichkeit unter den Bedingungen der
+<em>Creative Commons Namensnennung – Nicht kommerziell –
+Weitergabe unter gleichen Bedingungen 3.0 Unported</em>.
+      </div>
+
+    </div>
+  </div>
+
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.sections", "navigation.indexes", "navigation.expand", "toc.integrate", "navigation.top"], "search": "assets/javascripts/workers/search.7a47a382.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.e71a0d61.min.js"></script>
+      
+        <script src="javascripts/focus.js"></script>
+      
+    
+  </body>
+</html>
