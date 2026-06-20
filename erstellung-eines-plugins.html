@@ -12,13 +12,13 @@
         <meta name="author" content="Serge Tahé">
       
       
-        <link rel="canonical" href="https://stahe.github.io/de-struts1x-dec-2003/erstellen-eines-plugins.html">
+        <link rel="canonical" href="https://stahe.github.io/de-struts1x-dec-2003/erstellung-eines-plugins.html">
       
       
-        <link rel="prev" href="-quiest-anwendung.html">
+        <link rel="prev" href="-anwendung-quiest.html">
       
       
-        <link rel="next" href="arbeiten-mit-einer-datenquelle.html">
+        <link rel="next" href="nutzung-einer-datenquelle.html">
       
       
         
@@ -29,7 +29,7 @@
     
     
       
-        <title>8. Erstellen eines Plugins - Einführung in Struts 1.x anhand von Beispielen</title>
+        <title>8. Erstellung eines Plugins - Einführung in Struts 1.x anhand von Beispielen</title>
       
     
     
@@ -94,7 +94,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#8-erstellen-eines-plugins" class="md-skip">
+        <a href="#8-erstellung-eines-plugins" class="md-skip">
           Skip to content
         </a>
       
@@ -130,7 +130,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              8. Erstellen eines Plugins
+              8. Erstellung eines Plugins
             
           </span>
         </div>
@@ -305,14 +305,14 @@
   
   
     <li class="md-nav__item">
-      <a href="allgemeine-informationen.html" class="md-nav__link">
+      <a href="allgemeines.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    1. Allgemeine Informationen
+    1. Allgemeines
   
 
     
@@ -332,14 +332,14 @@
   
   
     <li class="md-nav__item">
-      <a href="die-anwendung-strutspersonne.html" class="md-nav__link">
+      <a href="die-struts-anwendung-personne.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    2. Die Anwendung „strutspersonne“
+    2. Die Struts-Anwendung „personne“
   
 
     
@@ -359,14 +359,14 @@
   
   
     <li class="md-nav__item">
-      <a href="formularverarbeitung-durch-den-controller.html" class="md-nav__link">
+      <a href="verarbeitung-des-formulars-durch-den-controller.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    3. Formularverarbeitung durch den Controller
+    3. Verarbeitung des Formulars durch den Controller
   
 
     
@@ -440,14 +440,14 @@
   
   
     <li class="md-nav__item">
-      <a href="html-formulare.html" class="md-nav__link">
+      <a href="formulare-html.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    6. HTML-Formulare
+    6. Formulare HTML
   
 
     
@@ -467,14 +467,14 @@
   
   
     <li class="md-nav__item">
-      <a href="-quiest-anwendung.html" class="md-nav__link">
+      <a href="-anwendung-quiest.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    7.  QuiEst-Anwendung
+    7.  Anwendung QuiEst
   
 
     
@@ -510,7 +510,7 @@
   <span class="md-ellipsis">
     
   
-    8. Erstellen eines Plugins
+    8. Erstellung eines Plugins
   
 
     
@@ -521,14 +521,14 @@
           <span class="md-nav__icon md-icon"></span>
         </label>
       
-      <a href="erstellen-eines-plugins.html" class="md-nav__link md-nav__link--active">
+      <a href="erstellung-eines-plugins.html" class="md-nav__link md-nav__link--active">
         
   
   
   <span class="md-ellipsis">
     
   
-    8. Erstellen eines Plugins
+    8. Erstellung eines Plugins
   
 
     
@@ -576,10 +576,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#83-der-code-fur-die-ansicht-infosjsp" class="md-nav__link">
+  <a href="#83-der-code-der-ansicht-infosjsp" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8.3. Der Code für die Ansicht infos.jsp
+        8.3. Der Code der Ansicht infos.jsp
       
     </span>
   </a>
@@ -598,10 +598,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#85-testen" class="md-nav__link">
+  <a href="#85-die-tests" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8.5. Testen
+        8.5. Die Tests
       
     </span>
   </a>
@@ -634,14 +634,14 @@
   
   
     <li class="md-nav__item">
-      <a href="arbeiten-mit-einer-datenquelle.html" class="md-nav__link">
+      <a href="nutzung-einer-datenquelle.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    9. Arbeiten mit einer Datenquelle
+    9. Nutzung einer Datenquelle
   
 
     
@@ -698,8 +698,8 @@
 
 
 
-<h1 id="8-erstellen-eines-plugins">8. <span style="color: #365f91">Erstellen eines Plugins</span></h1>
-<p>Es ist möglich, Anwendungen zu erstellen, die als <strong>Plugins</strong> bezeichnet werden und beim Start einer Struts-Anwendung geladen sowie beim Herunterfahren wieder entladen werden. Dies ermöglicht in der Regel die Initialisierung beim Start der Anwendung und die Freigabe von Ressourcen beim Herunterfahren. Diese Vorgänge können auch durch eine Erweiterung der ActionServlet-Klasse des Controllers durchgeführt werden, wie es in <strong>der</strong> vorherigen Anwendung geschehen ist. Das Plugin stellt eine Alternative zu dieser Lösung dar. Ein Plugin kann eine komplexere Anwendung sein als eine einfache Umgebungsinitialisierung. Ein Beispiel hierfür haben wir in der Lektion gesehen, in der deklarative Validierungsregeln vorgestellt wurden. Ein Plugin wird in der Struts-Konfigurationsdatei deklariert. Das <strong>ValidatorPlugIn</strong> wurde in der Datei <strong>struts-config.xml</strong> der Anwendung, die es verwendete, wie folgt deklariert:</p>
+<h1 id="8-erstellung-eines-plugins">8. <span style="color: #365f91">Erstellung eines Plugins</span></h1>
+<p>Es ist möglich, Anwendungen zu erstellen, die als <strong>Plugins</strong> bezeichnet werden und beim Start einer Struts-Anwendung geladen sowie beim Beenden der Anwendung entladen werden. Dies ermöglicht es in der Regel, beim Start der Anwendung Initialisierungen durchzuführen und beim Beenden der Anwendung Ressourcen freizugeben. Diese Vorgänge können auch durchgeführt werden, indem man die Klasse <code>**ActionServlet</code><strong> vom Controller ableitet – genau das wurde in </strong>der<strong> vorherigen Anwendung getan. Das Plugin ist eine Alternative zu dieser Lösung. Das Plugin kann eine komplexere Anwendung sein als eine einfache Initialisierung der Umgebung. Ein Beispiel dafür haben wir in der Lektion gesehen, in der die Konzepte der deklarativen Validierungsregeln vorgestellt wurden. Ein Plugin wird in der Struts-Konfigurationsdatei deklariert. Das Plugin </strong>ValidatorPlugIn<strong> wurde somit in der Datei </strong>struts-config.xml** der Anwendung deklariert, die es verwendete:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>    &lt;plug-in className=&quot;org.apache.struts.validator.ValidatorPlugIn&quot;&gt;
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>        &lt;set-property 
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        property=&quot;pathnames&quot; 
@@ -707,10 +707,10 @@
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    /&gt;
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    &lt;/plug-in&gt;
 </code></pre></div>
-<p>Wir werden nun eine Struts-Anwendung unter Verwendung eines Plugins beschreiben.</p>
+<p>Wir beschreiben nun eine Struts-Anwendung, die ein Plugin verwendet.</p>
 <h2 id="81-konfiguration-der-struts-anwendung-plugin1">8.1. <span style="color: #4f81bd">Konfiguration der Struts-Anwendung /plugin1</span></h2>
-<p>Wir schlagen vor, die Struts-Anwendung <strong>/plugin1</strong> wie folgt zu konfigurieren:</p>
-<p><mark style="background-color: #fff5ce">web.</mark><mark style="background-color: #c0c0c0">xml</mark></p>
+<p>Wir beabsichtigen, die Struts-Anwendung <strong>/plugin1</strong> mit folgender Konfiguration zu erstellen:</p>
+<p><mark style="background-color: #fff5ce">web.xml</mark></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="cp">&lt;!DOCTYPE web-app</span>
@@ -743,7 +743,7 @@
 <a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
 <a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="nt">&lt;/web-app&gt;</span>
 </code></pre></div>
-<p>Wir werden nicht näher auf diese Datei eingehen, da sie dem Standard entspricht.</p>
+<p>Wir werden nicht näher auf diese Standarddatei eingehen.</p>
 <p><mark style="background-color: #fff5ce">struts-config.xml</mark></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot; ?&gt;</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
@@ -760,7 +760,7 @@
 <a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
 <a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="nt">&lt;/struts-config&gt;</span>
 </code></pre></div>
-<p>Wir haben nur einen Abschnitt hinzugefügt, nämlich den für das Plugin. Die Attribute des hier verwendeten <strong>&lt;plug-in&gt;</strong>-Tags lauten wie folgt:</p>
+<p>Wir haben nur einen Abschnitt eingefügt, nämlich den für das Plugin. Die hier verwendeten Attribute des <strong>&lt;plug-in&gt;</strong>-Tags lauten wie folgt:</p>
 <table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div markdown="block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>className
 </code></pre></div>
@@ -769,9 +769,9 @@
 </code></pre></div>
 </div></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><div style="margin:0 0 0.5em 0">ermöglicht die Initialisierung des Plugins mit (Schlüssel, Wert)-Paaren</div></td></tr></table>
 
-<p>Der Zweck dieser Anwendung besteht darin, zu veranschaulichen, wie das Plugin seine Initialisierungsparameter abrufen und sie anderen Objekten zur Verfügung stellen kann, die denselben Anwendungskontext nutzen. Wir verwenden eine einfache JSP-Ansicht, um die Initialisierungswerte des Plugins anzuzeigen, was erklärt, warum die Konfigurationsdatei keine Aktion enthält.</p>
+<p>Das Ziel dieser Anwendung ist es, zu zeigen, wie das Plugin seine Initialisierungsparameter abrufen und sie anderen Objekten zur Verfügung stellen kann, die denselben Anwendungskontext teilen. Wir werden eine einfache Ansicht JSP verwenden, um die Initialisierungswerte des Plugins anzuzeigen, was erklärt, warum die Konfigurationsdatei keine Aktionen enthält.</p>
 <h2 id="82-die-java-klasse-des-plugins">8.2. <span style="color: #4f81bd">Die Java-Klasse des Plugins</span></h2>
-<p>Eine Java-Klasse, die als Plugin für eine Struts-Anwendung dient, muss die Schnittstelle <strong>org.apache.struts.action.PlugIn</strong> implementieren. Diese Implementierung umfasst das Schreiben von zwei Methoden:</p>
+<p>Eine Java-Klasse, die als Plugin für eine Struts-Anwendung dient, muss die Schnittstelle <strong>org.apache.struts.action.PlugIn</strong> implementieren. Diese Implementierung besteht darin, zwei Methoden zu schreiben:</p>
 <ul>
   <li>public void init(ActionServlet servlet, ModuleConfig conf)
   </li>
@@ -779,8 +779,8 @@
   </li>
 </ul>
 
-<p>Wenn die Struts-Anwendung geladen wird, instanziiert ihr Controller alle in der Datei <em>struts-config.xml</em> deklarierten Plugins. Anschließend führt er für jedes einzelne die init-Methode aus. Innerhalb dieser Methode führt das Plugin seine Initialisierung durch. Hier lesen wir einfach die Initialisierungsparameter des Plugins ein und legen sie im Anwendungskontext ab, damit sie allen anderen Objekten in der Anwendung zur Verfügung stehen. Wenn die Anwendung entladen wird, führt der Controller für jedes der geladenen Plugins die Methode <strong>destroy</strong> aus. Dies ist der Zeitpunkt, um nicht mehr benötigte Ressourcen freizugeben. Hier haben wir nichts zu tun.</p>
-<p>Der Klassencode lautet wie folgt:</p>
+<p>Wenn die Struts-Anwendung geladen wird, instanziiert ihr Controller alle in der Datei <em>struts-config.xml</em> deklarierten Plugins. Anschließend führt er für jedes einzelne die Methode <strong><code>init</code></strong> aus. In dieser Methode führt das Plugin seine Initialisierungen durch. Hier beschränken wir uns darauf, die Initialisierungsparameter des Plugins auszulesen und diese in den Anwendungskontext zu übertragen, damit sie für alle anderen Objekte der Anwendung verfügbar sind. Wenn die Anwendung entladen wird, führt der Controller die Methode <strong>„destroy“</strong> jedes der geladenen Plugins aus. Dies ist der Zeitpunkt, um nicht mehr benötigte Ressourcen freizugeben. Hier müssen wir nichts unternehmen.</p>
+<p>Der Code der Klasse lautet wie folgt:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">package</span><span class="w"> </span><span class="nn">istia.st.struts.plugins</span><span class="p">;</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">javax.servlet.ServletException</span><span class="p">;</span>
@@ -791,61 +791,61 @@
 <a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>
 <a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">MyPlugin</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">PlugIn</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="c1">// method called when application context is deleted</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="c1">// Methode, die beim Löschen des Anwendungskontexts aufgerufen wird</span>
 <a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">destroy</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">    </span><span class="p">}</span>
 <a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>
-<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">     </span><span class="c1">// method called on initial creation of application context</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">     </span><span class="c1">// Methode, die bei der erstmaligen Erstellung des Anwendungskontexts aufgerufen wird</span>
 <a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">init</span><span class="p">(</span><span class="n">ActionServlet</span><span class="w"> </span><span class="n">servlet</span><span class="p">,</span><span class="w"> </span><span class="n">ModuleConfig</span><span class="w"> </span><span class="n">conf</span><span class="p">)</span>
 <a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">        </span><span class="kd">throws</span><span class="w"> </span><span class="n">ServletException</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">         </span><span class="c1">// class name of this object</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">         </span><span class="c1">// Name der Klasse dieses Objekts</span>
 <a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">        </span><span class="n">String</span><span class="w"> </span><span class="n">className</span><span class="o">=</span><span class="k">this</span><span class="p">.</span><span class="na">getClass</span><span class="p">().</span><span class="na">getName</span><span class="p">();</span>
-<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">        </span><span class="c1">// plug-in list</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">        </span><span class="c1">// Liste der Plugins</span>
 <a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="w">        </span><span class="n">PlugInConfig</span><span class="o">[]</span><span class="w"> </span><span class="n">pluginConfigs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conf</span><span class="p">.</span><span class="na">findPlugInConfigs</span><span class="p">();</span>
-<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">         </span><span class="c1">// explore plugins to find the right one</span>
-<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">         </span><span class="c1">// which is named after this class</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="w">         </span><span class="c1">// Durchsuchen der Plugins, um dasjenige zu finden</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="w">         </span><span class="c1">// das den Namen dieser Klasse trägt</span>
 <a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="w">        </span><span class="kt">boolean</span><span class="w"> </span><span class="n">trouvé</span><span class="o">=</span><span class="kc">false</span><span class="p">;</span>
 <a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="o">!</span><span class="w"> </span><span class="n">trouvé</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">pluginConfigs</span><span class="p">.</span><span class="na">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="w">            </span><span class="c1">// plugin name</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="w">            </span><span class="c1">// Name des Plugins</span>
 <a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="w">            </span><span class="n">String</span><span class="w"> </span><span class="n">pluginClassName</span><span class="o">=</span><span class="n">pluginConfigs</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">getClassName</span><span class="p">();</span>
-<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="w">             </span><span class="c1">// if it&#39;s not the right plugin, continue</span>
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="w">             </span><span class="c1">// Wenn es nicht das richtige Plugin ist, fahren wir fort</span>
 <a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="w">            </span><span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="w"> </span><span class="n">pluginClassName</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">className</span><span class="p">))</span><span class="w"> </span><span class="k">continue</span><span class="p">;</span>
-<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="w">            </span><span class="c1">// it&#39;s the right one - you memorize its properties in context</span>
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="w">            </span><span class="c1">// Es ist das richtige – seine Eigenschaften werden im Kontext gespeichert</span>
 <a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="w">            </span><span class="n">servlet</span><span class="p">.</span><span class="na">getServletContext</span><span class="p">().</span><span class="na">setAttribute</span><span class="p">(</span><span class="s">&quot;initialisations&quot;</span><span class="p">,</span><span class="n">pluginConfigs</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">getProperties</span><span class="p">());</span>
 <a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a><span class="w">            </span><span class="n">trouvé</span><span class="o">=</span><span class="kc">true</span><span class="p">;</span>
 <a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="w">        </span><span class="p">}</span><span class="c1">//for i</span>
-<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">//init</span>
-<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a><span class="p">}</span><span class="w"> </span><span class="c1">//class</span>
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">//initialisieren</span>
+<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a><span class="p">}</span><span class="w"> </span><span class="c1">//Klasse</span>
 </code></pre></div>
-<p>Bitte beachten Sie folgende Punkte:</p>
+<p>Beachten Sie bitte folgende Punkte:</p>
 <ul>
-  <li>Die Methode <b>init </b>nimmt einen Parameter namens <b>conf </b>(vom Typ <b>ModuleConfig) </b>entgegen, der Zugriff auf den Inhalt der Datei<b> struts-config.xml </b>gewährt. 
+  <li>Die Methode <b>„init“ </b>erhält einen Parameter namens <b>„conf“ </b>vom Typ <b>„ModuleConfig“, </b>der Zugriff auf den Inhalt der Datei <b>„struts-config.xml“</b> gewährt. 
   </li>
-  <li>Die Methode<b> [ModuleConfig].findPlugInConfigs() </b>ruft alle <b>&lt;plug-in&gt;</b>-Abschnitte aus der Struts-Konfigurationsdatei in Form eines Arrays von PlugInConfig-Objekten ab.
+  <li>Die Methode <b>[ModuleConfig].findPlugInConfigs() </b>ermöglicht es, alle <b>&lt;plug-in&gt;</b>-Abschnitte der Struts-Konfigurationsdatei in Form eines Arrays von <b>PlugInConfig-Objekten </b>abzurufen.
   </li>
-  <li>Die Klasse <b>PluginConfig </b>repräsentiert einen <b>&lt;plug-in&gt;</b>-Abschnitt der Konfigurationsdatei. Die Methode<b> [PlugInConfig].getProperties </b>ermöglicht den Zugriff auf die <b>&lt;set-property&gt;</b>-Elemente des Abschnitts in Form eines <b>java.util.</b>Map-Wörterbuchs.
+  <li>Die Klasse <b>PluginConfig </b>repräsentiert einen <b>&lt;plug-in&gt;</b>-Abschnitt der Konfigurationsdatei. Die Methode <b>[PlugInConfig].getProperties </b>ermöglicht uns den Zugriff auf die <b>&lt;set-property&gt;</b>-Elemente des Abschnitts in Form eines <b>java.util.Map</b>-Wörterbuchs.
   </li>
-  <li>Das Eigenschaften-Wörterbuch des Plugins wird im Anwendungskontext abgelegt.
+  <li>Das Wörterbuch der Plugin-Eigenschaften wird in den Anwendungskontext eingebunden.
   </li>
   <li>Da es mehrere Plugins geben kann, müssen wir dasjenige finden, das uns interessiert. Es ist dasjenige, das denselben Namen wie die ausgeführte Klasse trägt.
   </li>
 </ul>
 
-<p>Hier haben wir uns dafür entschieden, das gesamte Wörterbuch im Kontext abzulegen. Wir hätten uns auch dafür entscheiden können, es zu verwenden. Der folgende Codeausschnitt veranschaulicht eine Möglichkeit, dies zu tun:</p>
+<p>Wir haben uns hier dafür entschieden, das gesamte Wörterbuch in den Kontext einzufügen. Wir hätten dieses auch nutzen können. Der folgende Codeabschnitt veranschaulicht eine Möglichkeit, dies zu tun:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>            Map initialisations = pluginConfigs[i].getProperties();
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>             // iterate over dictionary entries
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>             // die Einträge des Wörterbuchs durchlaufen
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>            Iterator entrées = initialisations.entrySet().iterator();
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>            while (entrées.hasNext()) {
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>                 // retrieve current input (key,value)
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>                 // den aktuellen Eintrag (Schlüssel, Wert) abrufen
 <a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>                Map.Entry entrée = (Map.Entry) entrées.next();
 <a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>                String clé = (String) entrée.getKey();
 <a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>                String valeur = (String) entrée.getValue();
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>                // exploit (key,value)
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>                // (Schlüssel, Wert) auswerten
 <a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>                //...
 <a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>            }
 </code></pre></div>
-<h2 id="83-der-code-fur-die-ansicht-infosjsp">8.3. <span style="color: #4f81bd">Der Code für die Ansicht infos.jsp</span></h2>
-<p>Die Ansicht <strong>infos.jsp</strong> ist für die Anzeige des Inhalts des Eigenschaftsverzeichnisses des Plugins zuständig, das im Anwendungskontext abgelegt wurde. Da die Ansicht <strong>infos.jsp</strong> Teil dieses Kontexts ist, hat sie Zugriff darauf. Ihr Code lautet wie folgt:</p>
+<h2 id="83-der-code-der-ansicht-infosjsp">8.3. <span style="color: #4f81bd">Der Code der Ansicht infos.jsp</span></h2>
+<p>Die Ansicht <strong>infos.jsp</strong> dient dazu, den Inhalt des Eigenschaftswörterbuchs des Plugins anzuzeigen, das in den Anwendungskontext eingebunden wurde. Da die Ansicht <strong>infos.jsp</strong> Teil dieses Kontexts ist, hat sie Zugriff darauf. Ihr Code lautet wie folgt:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="err">&lt;</span>%@ taglib uri=&quot;/WEB-INF/struts-bean.tld&quot; prefix=&quot;bean&quot; %&gt;
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="err">&lt;</span>%@ taglib uri=&quot;/WEB-INF/struts-logic.tld&quot; prefix=&quot;logic&quot; %&gt;
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
@@ -871,26 +871,26 @@
 </code></pre></div>
 <p>Hinweise:</p>
 <ul>
-  <li>Wir verwenden die Tag-Bibliotheken <b>„struts-logic“ </b>und <b>„struts-bean“</b>
+  <li>Wir verwenden die Tag-Bibliotheken <b>„struts-logic“ </b>und <b>„struts-bean“.</b>
   </li>
-  <li>Das <b>&lt;logic:iterate&gt;</b>-Tag ermöglicht es uns, das Initialisierungswörterbuch anzuzeigen, das durch die init-Methode des Plugins in den Kontext gestellt wurde. Das name-Attribut gibt das Objekt an, über das iteriert werden soll. Dies sollte beispielsweise eine Sammlung, ein Iterator usw. sein. Das Objekt wird in allen Bereichen (Seite, Anfrage, Sitzung, Kontext) gesucht. Hier wird es im Kontextbereich gefunden. Der Parameter <b>„id“ </b>wird verwendet, um das aktuelle Element der Sammlung im Verlauf der Iteration zu benennen. Hier, innerhalb des Hauptteils des <b>&lt;logic:iterate&gt;</b>-Tags, steht<b> „element“ </b>für das aktuelle Element eines Wörterbuchs. Dies wird durch ein <b>java.util.Map.</b>Entry-Objekt dargestellt, das im Wesentlichen ein (Schlüssel, Wert)-Paar aus dem Wörterbuch ist.
+  <li>Das Tag <b>&lt;logic:iterate&gt; </b>ermöglicht es uns, das <b>Initialisierungswörterbuch</b> anzuzeigen<b>, </b>das durch die <b>init-Methode </b>des Plugins in den Kontext gesetzt wurde. Das Attribut <b>„name“ </b>bezeichnet das Objekt, über das iteriert werden soll. Dabei muss es sich um etwas handeln, das einer Sammlung, einem Iterator usw. ähnelt. Das Objekt wird in allen Gültigkeitsbereichen (Seite, Anfrage, Sitzung, Kontext) gesucht. Hier wird es im <b>Kontext</b>-Bereich gefunden. Der Parameter <b>„id“ </b>dient dazu, dem aktuellen Element der Sammlung im Verlauf der Iterationen einen Namen zu geben. Hier, im Hauptteil des Tags <b>&lt;logic:iterate&gt;</b>, steht <b>„element“ </b>für das aktuelle Element eines Wörterbuchs. Dieses wird durch ein Objekt <b>„java.util.Map.Entry“</b> dargestellt, das grob gesagt ein (Schlüssel, Wert)-Paar des Wörterbuchs ist.
   </li>
-  <li>Im Hauptteil des <b>&lt;logic:iterate&gt;</b>-Tags zeigen wir (<b>&lt;bean:write&gt;</b>) den Inhalt des aktuellen Elements <b>„element“ </b>an. Dieses wird als Objekt mit zwei <b>Eigenschaften</b> behandelt: dem <b>Schlüssel </b>und dem <b>Wert</b>. Beide Eigenschaften werden angezeigt.
+  <li>Im Hauptteil des <b>&lt;logic:iterate&gt;</b>-Tags wird der Inhalt des aktuellen Elements <b>„element“ </b>angezeigt (<b>&lt;bean:write&gt;</b>). Dieses wird als Objekt mit zwei Eigenschaften (<b>property</b>) betrachtet: dem Schlüssel <b>„key“ </b>und dem Wert <b>„value</b>“. Diese beiden Eigenschaften werden angezeigt.
   </li>
 </ul>
 
 <h2 id="84-bereitstellung">8.4. <span style="color: #4f81bd">Bereitstellung</span></h2>
-<p>Der Anwendungskontext wird in der Konfigurationsdatei <strong>„server.xml“</strong> von Tomcat definiert:</p>
+<p>Der Anwendungskontext wird in der Tomcat-Konfigurationsdatei <strong>server.xml</strong> definiert:</p>
 <p><strong>&lt;Context path=&quot;/plugin11&quot; reloadable=&quot;true&quot; docBase=&quot;E:\data\serge\web\struts\plugins\1&quot; /&gt;</strong></p>
 <p>Die Verzeichnisstruktur der Anwendung sieht wie folgt aus:</p>
-<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000001300000008FE31A6D61.png" width="304" height="143" style="display:inline-block; margin:4px;width:8.042cm;height:3.784cm;" class="odt-zoomable" data-zoom-src="images/10000000000001300000008FE31A6D61.png" /><img src="images/1000000000000160000000D371853205.png" width="352" height="211" style="display:inline-block; margin:4px;width:9.312cm;height:5.583cm;" class="odt-zoomable" data-zoom-src="images/1000000000000160000000D371853205.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000015F0000018256CF5DE2.png" width="351" height="386" style="display:inline-block; margin:4px;width:9.285cm;height:10.211cm;" class="odt-zoomable" data-zoom-src="images/100000000000015F0000018256CF5DE2.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;" colspan="2"><img src="images/10000000000001DF0000006C6244F965.png" width="479" height="108" style="display:inline-block; margin:4px;width:12.672cm;height:2.858cm;" class="odt-zoomable" data-zoom-src="images/10000000000001DF0000006C6244F965.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr></table>
+<table class="odt-table" style="border-collapse: collapse; width: 100%; margin-bottom: 1em;"><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/10000000000001300000008FE31A6D61.png" width="304" height="143" style="display:inline-block; margin:4px;width:8.042cm;height:3.784cm;" class="odt-zoomable" data-zoom-src="images/10000000000001300000008FE31A6D61.png" /><img src="images/1000000000000160000000D371853205.png" width="352" height="211" style="display:inline-block; margin:4px;width:9.312cm;height:5.583cm;" class="odt-zoomable" data-zoom-src="images/1000000000000160000000D371853205.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;"><img src="images/100000000000015F0000018256CF5DE2.png" width="351" height="386" style="display:inline-block; margin:4px;width:9.285cm;height:10.211cm;" class="odt-zoomable" data-zoom-src="images/100000000000015F0000018256CF5DE2.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr><tr><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;" colspan="2"><img src="images/10000000000001DF0000006C6244F965.png" width="479" height="108" style="display:inline-block; margin:4px;width:12.672cm;height:2.858cm;" class="odt-zoomable" data-zoom-src="images/10000000000001DF0000006C6244F965.png" /></td><td style="border: 1px solid #ddd; padding: 8px; vertical-align: top; text-align: left;">&nbsp;</td></tr></table>
 
-<h2 id="85-testen">8.5. <span style="color: #4f81bd">Testen</span></h2>
-<p>Wir starten Tomcat und rufen die URL <strong>http://localhost:8080/plugin1/infos.jsp</strong> auf:</p>
-<p><img src="images/10000000000001C2000000D919CB97E0.png" width="450" height="217" style="width:11.904cm;height:5.74cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C2000000D919CB97E0.png" /></p>
-<p>Wir stellen fest, dass die Ansicht <strong>infos.jsp</strong> über das Plugin erfolgreich auf die im Anwendungskontext gespeicherten Informationen zugegriffen hat.</p>
+<h2 id="85-die-tests">8.5. <span style="color: #4f81bd">Die Tests</span></h2>
+<p>Wir starten Tomcat und rufen die Seite URL <strong>http://localhost:8080/plugin1/infos.jsp</strong> auf:</p>
+<p><img src="images/10000000000001C2000000D919CB97E0.png" width="450" height="217" style="width:11.904cm;height:5.741cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/10000000000001C2000000D919CB97E0.png" /></p>
+<p>Wir stellen fest, dass die Ansicht <strong>infos.jsp</strong> tatsächlich auf die Informationen zugreifen konnte, die vom Plugin im Anwendungskontext gespeichert wurden.</p>
 <h2 id="86-fazit">8.6. <span style="color: #4f81bd">Fazit</span></h2>
-<p>Wir haben gezeigt, dass eine Struts-Anwendung mithilfe eines Plugins initialisiert werden kann. Dies kann als Alternative zur Ableitung der ActionServlet-Klasse dienen, um das gleiche Ergebnis zu erzielen.</p>
+<p>Wir haben gezeigt, dass sich eine Struts-Anwendung mithilfe eines Plugins initialisieren lässt. Dies kann eine Alternative zur Ableitung der Klasse <strong>ActionServlet</strong> sein, um dieselbe Aufgabe zu erfüllen.</p>
 
 
 

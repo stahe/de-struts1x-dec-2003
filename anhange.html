@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://stahe.github.io/de-struts1x-dec-2003/anhange.html">
       
       
-        <link rel="prev" href="arbeiten-mit-einer-datenquelle.html">
+        <link rel="prev" href="nutzung-einer-datenquelle.html">
       
       
       
@@ -303,14 +303,14 @@
   
   
     <li class="md-nav__item">
-      <a href="allgemeine-informationen.html" class="md-nav__link">
+      <a href="allgemeines.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    1. Allgemeine Informationen
+    1. Allgemeines
   
 
     
@@ -330,14 +330,14 @@
   
   
     <li class="md-nav__item">
-      <a href="die-anwendung-strutspersonne.html" class="md-nav__link">
+      <a href="die-struts-anwendung-personne.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    2. Die Anwendung „strutspersonne“
+    2. Die Struts-Anwendung „personne“
   
 
     
@@ -357,14 +357,14 @@
   
   
     <li class="md-nav__item">
-      <a href="formularverarbeitung-durch-den-controller.html" class="md-nav__link">
+      <a href="verarbeitung-des-formulars-durch-den-controller.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    3. Formularverarbeitung durch den Controller
+    3. Verarbeitung des Formulars durch den Controller
   
 
     
@@ -438,14 +438,14 @@
   
   
     <li class="md-nav__item">
-      <a href="html-formulare.html" class="md-nav__link">
+      <a href="formulare-html.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    6. HTML-Formulare
+    6. Formulare HTML
   
 
     
@@ -465,14 +465,14 @@
   
   
     <li class="md-nav__item">
-      <a href="-quiest-anwendung.html" class="md-nav__link">
+      <a href="-anwendung-quiest.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    7.  QuiEst-Anwendung
+    7.  Anwendung QuiEst
   
 
     
@@ -492,14 +492,14 @@
   
   
     <li class="md-nav__item">
-      <a href="erstellen-eines-plugins.html" class="md-nav__link">
+      <a href="erstellung-eines-plugins.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    8. Erstellen eines Plugins
+    8. Erstellung eines Plugins
   
 
     
@@ -519,14 +519,14 @@
   
   
     <li class="md-nav__item">
-      <a href="arbeiten-mit-einer-datenquelle.html" class="md-nav__link">
+      <a href="nutzung-einer-datenquelle.html" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    9. Arbeiten mit einer Datenquelle
+    9. Nutzung einer Datenquelle
   
 
     
@@ -643,15 +643,15 @@
 
 <h1 id="10-anhange">10. <span style="color: #365f91">Anhänge</span></h1>
 <h2 id="101-konfiguration-von-tomcat-5">10.1. <span style="color: #4f81bd">Konfiguration von Tomcat 5</span></h2>
-<p>In den vorherigen Beispielen wurde der Webserver Tomcat 4.x verwendet. Wenn Sie Tomcat 5.x verwenden, unterscheidet sich die Konfiguration der Anwendung <strong>„strutspersonne“</strong> geringfügig:</p>
+<p>In den vorangegangenen Beispielen wurde der Webserver Tomcat 4.x verwendet. Bei Verwendung von Tomcat 5.x sieht die Konfiguration der Anwendung <strong>„strutspersonne“</strong> etwas anders aus:</p>
 <ul>
-  <li>Zunächst wird der Kontext nicht in der Datei<b> &lt;tomcat5&gt;/conf/server.xml </b>erstellt. Er wird in einer Datei<b> namens strutspersonne.xml </b>erstellt, die sich im Ordner<b> &lt;tomcat5&gt;/conf/Catalina/localhost </b>befindet:
+  <li>Zunächst erfolgt die Erstellung des Kontexts nicht in der Datei <b>&lt;tomcat5&gt;/conf/server.xml</b>. Sie erfolgt in einer Datei namens <b>strutspersonne.xml, </b>die sich im Ordner <b>&lt;tomcat5&gt;/conf/Catalina/localhost </b>befindet:
   </li>
 </ul>
 
-<p><img src="images/100000000000017000000100C0361CD4.png" width="368" height="256" style="width:9.735cm;height:6.772cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000017000000100C0361CD4.png" /></p>
+<p><img src="images/100000000000017000000100C0361CD4.png" width="368" height="256" style="width:9.735cm;height:6.773cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000017000000100C0361CD4.png" /></p>
 <ul>
-  <li>Der Inhalt der Datei<b> strutspersonne.xml </b>(der Name kann eigentlich beliebig sein) lautet wie folgt:
+  <li>Der Inhalt der Datei <b>strutspersonne.xml </b>(wahrscheinlich kann der Name beliebig sein) lautet wie folgt:
   </li>
 </ul>
 
@@ -659,7 +659,7 @@
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>&lt;/Context&gt;
 </code></pre></div>
 <ul>
-<li>Die Struts-.jar-Dateien befinden sich in  <strong>&lt;tomcat5&gt;/shared/lib</strong>:</li>
+<li>Die Struts-.jar-Dateien befinden sich in <strong>&lt;tomcat5&gt;/shared/lib</strong>:</li>
 </ul>
 <p><img src="images/100000000000015D000000E70E200FE6.png" width="349" height="231" style="width:9.232cm;height:6.112cm;" alt="Image" class="odt-zoomable" data-zoom-src="images/100000000000015D000000E70E200FE6.png" /></p>
 
